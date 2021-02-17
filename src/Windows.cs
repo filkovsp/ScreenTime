@@ -39,7 +39,7 @@ namespace Windows
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 5;
         
-        public static bool HideConsole()
+        private static bool HideConsole()
         {
             var hwnd = WindowProcessor.GetConsoleWindow();
             WindowProcessor.GetWindowThreadProcessId(hwnd, out var pid);
@@ -79,7 +79,7 @@ namespace Windows
                         window => window.pid,
                         window => (window.isAlive() ? " + " : " "),
                         window => window.imageFileName,
-                        window => window.GetWindowText()
+                        window => Truncate(window.GetWindowText(), 50)
                     ));
                 }
 
@@ -178,6 +178,11 @@ namespace Windows
                     //
                 }
             }
+        }
+
+        private static string Truncate(string text, int maxLength) {
+            if (string.IsNullOrEmpty(text)) return text;
+            return text.Length <= maxLength ? text : text.Substring(0, maxLength);
         }
 
     }
