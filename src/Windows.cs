@@ -63,6 +63,9 @@ namespace Windows
                 HideConsole();
             }
 
+            Log("Started pid: " + WindowProcessor.GetCurrentProcessId().ToString()).Wait();
+
+
             while (true)
             {
 
@@ -172,9 +175,6 @@ namespace Windows
             {
                 try
                 {
-                    // sync execution:
-                    // logFile.WriteLine(DateTime.Now.ToString() + " - " + text);
-
                     // async execution:
                     await logFile.WriteLineAsync(DateTime.Now.ToString() + " - " + text);
                 }

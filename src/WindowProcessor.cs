@@ -297,6 +297,9 @@ namespace Windows
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetConsoleWindow();
 
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetCurrentProcessId();
+
         public static void MinimizeWindow(IntPtr hWnd)
         {
             CloseWindow(hWnd);
