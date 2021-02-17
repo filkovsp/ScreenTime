@@ -172,7 +172,11 @@ namespace Windows
             {
                 try
                 {
-                    logFile.WriteLine(DateTime.Now.ToString() + " - " + text);
+                    // sync execution:
+                    // logFile.WriteLine(DateTime.Now.ToString() + " - " + text);
+
+                    // async execution:
+                    await logFile.WriteLineAsync(DateTime.Now.ToString() + " - " + text);
                 }
                 catch (Exception ex) {
                     //
